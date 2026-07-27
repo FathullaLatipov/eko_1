@@ -1,0 +1,7 @@
+'Abdullayeva _Durdona_Baxtiyorovna.PNG' -> abdullayeva.jpg size=(678, 1200) orientation_fixed
+'alimova_vazira_usmonovna.JPG' -> alimova.jpg size=(675, 1200) orientation_fixed
+'Gürkan_Yurtdaş.png' -> gurkan.jpg size=(675, 1200) orientation_fixed
+'Mesut_Çeter.JPG' -> mesut.jpg size=(675, 1200) orientation_fixed
+'nortojiyeva_tozagul_kuziyevna.JPG' -> nortojiyeva.jpg size=(675, 1200) orientation_fixed
+'osman_Çingöz.JPG' -> osman.jpg size=(675, 1200) orientation_fixed
+'Servin_Ergin.JPG' -> servin.jpg size=(801, 1200) orientation_fixed

@@ -1,0 +1,27 @@
+PUBLIC:
+'abdullayeva.jpg'
+'Abdullayeva_Durdona_Baxtiyorovna.PNG'
+'alimova.jpg'
+'alimova_vazira_usmonovna.JPG'
+'Gürkan_Yurtdaş.png'
+'Mesut_Çeter.JPG'
+'nortojiyeva_tozagul_kuziyevna.JPG'
+'osman_Çingöz.JPG'
+'servin.jpg'
+'Servin_Ergin.JPG'
+
+SOURCE:
+'Abdullayeva _Durdona_Baxtiyorovna.PNG'
+'alimova_vazira_usmonovna.JPG'
+'Gürkan_Yurtdaş.png'
+'Mesut_Çeter.JPG'
+'nortojiyeva_tozagul_kuziyevna.JPG'
+'osman_Çingöz.JPG'
+'Servin_Ergin.JPG'
+OK 'Abdullayeva _Durdona_Baxtiyorovna.PNG' -> abdullayeva.jpg (768, 1358) 105327
+OK 'alimova_vazira_usmonovna.JPG' -> alimova.jpg (1000, 562) 54507
+OK 'Gürkan_Yurtdaş.png' -> gurkan.jpg (1000, 1777) 248588
+OK 'Mesut_Çeter.JPG' -> mesut.jpg (1000, 562) 48139
+OK 'nortojiyeva_tozagul_kuziyevna.JPG' -> nortojiyeva.jpg (1000, 562) 47344
+OK 'osman_Çingöz.JPG' -> osman.jpg (1000, 562) 53717
+OK 'Servin_Ergin.JPG' -> servin.jpg (1000, 667) 59497

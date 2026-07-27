@@ -1,0 +1,7 @@
+'Abdullayeva _Durdona_Baxtiyorovna.PNG' (768, 1358) mode=RGB
+'alimova_vazira_usmonovna.JPG' (6000, 3376) mode=RGB
+'Gürkan_Yurtdaş.png' (1440, 2560) mode=RGB
+'Mesut_Çeter.JPG' (6000, 3376) mode=RGB
+'nortojiyeva_tozagul_kuziyevna.JPG' (6000, 3376) mode=RGB
+'osman_Çingöz.JPG' (6000, 3376) mode=RGB
+'Servin_Ergin.JPG' (4240, 2832) mode=RGB
