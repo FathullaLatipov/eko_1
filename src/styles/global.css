@@ -101,7 +101,7 @@ ul {
 }
 
 ::selection {
-  background: var(--turquoise);
+  background: var(--coral);
   color: white;
 }
 
@@ -128,15 +128,16 @@ ul {
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--turquoise);
+  color: var(--coral);
   margin-bottom: 20px;
 }
 
 .section-label::before {
   content: '';
   width: 28px;
-  height: 1px;
-  background: var(--turquoise);
+  height: 2px;
+  background: var(--coral);
+  border-radius: 2px;
 }
 
 .section-title {
@@ -147,6 +148,17 @@ ul {
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 20px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 18px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--coral), var(--turquoise));
 }
 
 .section-lead {
@@ -202,14 +214,16 @@ ul {
 .btn-secondary {
   background: white;
   color: var(--ink);
-  border: 1px solid var(--gray-200);
+  border: 1.5px solid rgba(232, 70, 82, 0.28);
   box-shadow: var(--shadow-soft);
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
-  border-color: var(--turquoise-soft);
-  box-shadow: var(--shadow-lift);
+  border-color: var(--coral);
+  color: var(--coral);
+  box-shadow: 0 12px 32px rgba(232, 70, 82, 0.16);
+  background: var(--coral-mist);
 }
 
 .btn-coral {
@@ -221,6 +235,21 @@ ul {
 .btn-coral:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 14px 36px rgba(232, 70, 82, 0.38);
+  background: #d63c48;
+}
+
+.btn-coral-soft {
+  background: var(--coral-mist);
+  color: var(--coral);
+  border: 1px solid rgba(232, 70, 82, 0.22);
+  box-shadow: none;
+}
+
+.btn-coral-soft:hover {
+  transform: translateY(-2px);
+  background: var(--coral);
+  color: white;
+  box-shadow: 0 10px 28px rgba(232, 70, 82, 0.25);
 }
 
 .btn-ghost {

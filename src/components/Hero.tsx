@@ -35,7 +35,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          Создаём чудеса с помощью современной репродуктивной медицины
+          Создаём чудеса с помощью{' '}
+          <em>современной</em> репродуктивной медицины
         </motion.h1>
 
         <motion.p
@@ -44,8 +45,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.9 }}
         >
-          Центр ЭКО в Ташкенте — турецкие эмбриологи-эксперты и тёплая персональная
-          забота, которая помогает семьям осуществить мечту.
+          Центр ЭКО в Ташкенте — турецкие эмбриологи-эксперты, отечественные врачи
+          Узбекистана и тёплая персональная забота, которая помогает семьям
+          осуществить мечту.
         </motion.p>
 
         <motion.div
@@ -54,7 +56,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75, duration: 0.8 }}
         >
-          <a href="#contact" className="btn btn-primary magnetic" data-cursor>
+          <a href="#contact" className="btn btn-coral magnetic" data-cursor>
             Записаться на консультацию
           </a>
           <a href="#doctors" className="btn btn-secondary magnetic" data-cursor>

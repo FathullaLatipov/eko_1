@@ -113,6 +113,12 @@
   margin-inline: auto;
 }
 
+.hero h1 em {
+  font-style: italic;
+  color: var(--coral);
+  font-weight: 400;
+}
+
 .hero-sub {
   font-size: 1.1rem;
   font-weight: 300;
@@ -146,9 +152,9 @@
 }
 
 .hero-scroll i {
-  width: 1px;
+  width: 2px;
   height: 32px;
-  background: linear-gradient(to bottom, var(--turquoise), transparent);
+  background: linear-gradient(to bottom, var(--coral), transparent);
   animation: float 2.2s ease-in-out infinite;
 }
 

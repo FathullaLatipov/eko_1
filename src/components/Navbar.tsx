@@ -7,8 +7,8 @@ const links = [
   { href: '#about', label: 'О клинике' },
   { href: '#journey', label: 'Путь' },
   { href: '#doctors', label: 'Команда' },
-  { href: '#technology', label: 'Технологии' },
   { href: '#stories', label: 'Истории' },
+  { href: '#reviews', label: 'Отзывы' },
   { href: '#contact', label: 'Контакты' },
 ]
 
@@ -43,7 +43,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <a href="#contact" className="btn btn-primary nav-cta" data-cursor>
+        <a href="#contact" className="btn btn-coral nav-cta" data-cursor>
           Записаться
         </a>
 
@@ -80,7 +80,7 @@ export function Navbar() {
                 {l.label}
               </motion.a>
             ))}
-            <a href="#contact" className="btn btn-primary" onClick={() => setOpen(false)}>
+            <a href="#contact" className="btn btn-coral" onClick={() => setOpen(false)}>
               Записаться на консультацию
             </a>
           </motion.div>

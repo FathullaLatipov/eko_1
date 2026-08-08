@@ -30,7 +30,7 @@ export function Footer() {
         <div>
           <h4>Пациентам</h4>
           <a href="#stories">Истории успеха</a>
-          <a href="#international">Иногородним</a>
+          <a href="#reviews">Отзывы</a>
           <a href="#faq">Вопросы</a>
           <a href="#contact">Контакты</a>
         </div>

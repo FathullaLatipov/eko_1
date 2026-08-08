@@ -9,8 +9,8 @@ export function Doctors() {
           <span className="section-label">Наша команда</span>
           <h2 className="section-title">Эксперты с тёплыми руками</h2>
           <p className="section-lead">
-            Эмбриологи из Турции и репродуктологи Ташкента — одна команда на каждом
-            этапе вашего пути.
+            Эмбриологи из Турции, координатор ЭКО и отечественные врачи Узбекистана —
+            одна команда на каждом этапе вашего пути.
           </p>
         </Reveal>
 
@@ -38,7 +38,7 @@ export function Doctors() {
                     <strong>{d.focus}</strong>
                   </li>
                 </ul>
-                <a href="#contact" className="btn btn-secondary" data-cursor>
+                <a href="#contact" className="btn btn-coral-soft" data-cursor>
                   Записаться на приём
                 </a>
               </div>

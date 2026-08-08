@@ -1,7 +1,7 @@
 export const clinic = {
   name: 'TürkMed',
   fullName: 'TürkMed EKU Markazi',
-  tagline: 'Эксперты из Турции — центр ЭКО',
+  tagline: 'Эксперты из Турции и врачи Узбекистана — центр ЭКО',
   mission: 'Мы помогаем семьям воплотить мечту о ребёнке.',
   phone: '+998 95 157 30 03',
   phoneHref: 'tel:+998951573003',
@@ -16,7 +16,40 @@ export const clinic = {
   logoFull: '/images/logo/logo_nav.png',
 }
 
+/** Порядок: эмбриологи → координатор → остальные */
 export const team = [
+  {
+    name: 'Osman Çingöz',
+    role: 'Эмбриолог',
+    detail: 'Из Турции · 17+ лет опыта',
+    focus: 'ICSI · культивирование эмбрионов · криоконсервация',
+    img: '/images/team/osman.jpg?v=2',
+    position: 'center top',
+  },
+  {
+    name: 'Mesut Çeter',
+    role: 'Эмбриолог',
+    detail: 'Из Турции · 16+ лет опыта',
+    focus: 'Лабораторное качество и оценка эмбрионов',
+    img: '/images/team/mesut.jpg?v=2',
+    position: 'center top',
+  },
+  {
+    name: 'Gürkan Yurtdaş',
+    role: 'Эмбриолог',
+    detail: 'Из Турции · 18+ лет опыта',
+    focus: 'Продвинутая эмбриология и андрологическая лаборатория',
+    img: '/images/team/gurkan.jpg?v=2',
+    position: 'center top',
+  },
+  {
+    name: 'Нуржонова Тозагул Кузиевна',
+    role: 'Координатор ЭКО',
+    detail: 'Сопровождение пациентов',
+    focus: 'Маршрут пациента · запись · поддержка',
+    img: '/images/team/nortojiyeva.jpg?v=2',
+    position: 'center top',
+  },
   {
     name: 'Алимова Вазира Усмоновна',
     role: 'Гинеколог-репродуктолог',
@@ -28,7 +61,7 @@ export const team = [
   {
     name: 'Сервин Эргин',
     role: 'Гинеколог-репродуктолог, акушер',
-    detail: 'Эксперт из Турции',
+    detail: 'Эксперт из Турции · 25+ лет опыта',
     focus: 'Ведение беременности и репродуктивная хирургия',
     img: '/images/team/servin.jpg?v=2',
     position: 'center top',
@@ -39,38 +72,6 @@ export const team = [
     detail: 'Высшая категория · 7+ лет опыта',
     focus: 'Женское здоровье и УЗИ',
     img: '/images/team/abdullayeva.jpg?v=2',
-    position: 'center top',
-  },
-  {
-    name: 'Осман Чингёз',
-    role: 'Эмбриолог',
-    detail: 'Из Турции · 17+ лет опыта',
-    focus: 'ICSI · культивирование эмбрионов · криоконсервация',
-    img: '/images/team/osman.jpg?v=2',
-    position: 'center top',
-  },
-  {
-    name: 'Месут Четер',
-    role: 'Эмбриолог',
-    detail: 'Из Турции · 16+ лет опыта',
-    focus: 'Лабораторное качество и оценка эмбрионов',
-    img: '/images/team/mesut.jpg?v=2',
-    position: 'center top',
-  },
-  {
-    name: 'Гюркан Юртдаш',
-    role: 'Эмбриолог',
-    detail: 'Из Турции · 18+ лет опыта',
-    focus: 'Продвинутая эмбриология и андрологическая лаборатория',
-    img: '/images/team/gurkan.jpg?v=2',
-    position: 'center top',
-  },
-  {
-    name: 'Нортожиева Тозагул Кузиевна',
-    role: 'Координатор ЭКО',
-    detail: 'Сопровождение пациентов',
-    focus: 'Маршрут пациента · запись · поддержка',
-    img: '/images/team/nortojiyeva.jpg?v=2',
     position: 'center top',
   },
 ] as const

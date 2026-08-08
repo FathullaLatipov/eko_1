@@ -27,14 +27,22 @@
   font-family: var(--font-display);
   font-size: 2.6rem;
   font-weight: 500;
-  color: var(--turquoise);
+  color: var(--coral);
   line-height: 1;
   margin-bottom: 8px;
+}
+
+.about-stats > div:nth-child(2) strong {
+  color: var(--turquoise);
 }
 
 .about-stats span {
   font-size: 0.9rem;
   color: var(--gray-600);
+}
+
+.about-stat-accent strong {
+  color: var(--coral);
 }
 
 .about-gallery {
@@ -86,11 +94,14 @@
   padding: 16px 18px;
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
+  border-left: 3px solid var(--coral);
 }
 
 /* Why */
 .why {
-  background: var(--white);
+  background:
+    radial-gradient(ellipse 40% 50% at 0% 50%, rgba(232, 70, 82, 0.04), transparent),
+    var(--white);
 }
 
 .why-grid {
@@ -207,19 +218,19 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1px solid rgba(16, 168, 201, 0.35);
+  border: 1px solid rgba(232, 70, 82, 0.35);
   display: grid;
   place-items: center;
   margin-bottom: 20px;
   background: white;
-  box-shadow: 0 0 0 6px rgba(16, 168, 201, 0.06);
+  box-shadow: 0 0 0 6px rgba(232, 70, 82, 0.08);
 }
 
 .timeline-node span {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--turquoise);
+  background: var(--coral);
 }
 
 .timeline-step strong {
@@ -299,7 +310,9 @@
 
 /* Doctors */
 .doctors {
-  background: linear-gradient(180deg, var(--turquoise-mist), var(--white) 40%);
+  background:
+    radial-gradient(ellipse 50% 40% at 90% 10%, rgba(232, 70, 82, 0.06), transparent),
+    linear-gradient(180deg, var(--turquoise-mist), var(--white) 40%);
 }
 
 .doctors-grid {
@@ -314,14 +327,16 @@
   overflow: hidden;
   background: white;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.35s ease;
   display: flex;
   flex-direction: column;
+  border-top: 2px solid transparent;
 }
 
 .doctor-card:hover {
   transform: translateY(-10px);
   box-shadow: var(--shadow-lift);
+  border-top-color: var(--coral);
 }
 
 .doctor-photo {
@@ -587,7 +602,7 @@
 
 .story-meta span {
   font-size: 0.85rem;
-  color: var(--turquoise);
+  color: var(--coral);
 }
 
 /* Statistics */
@@ -617,9 +632,13 @@
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 4vw, 3.6rem);
   font-weight: 500;
-  color: var(--ink);
+  color: var(--coral);
   line-height: 1;
   margin-bottom: 10px;
+}
+
+.stat-card:nth-child(even) strong {
+  color: var(--turquoise);
 }
 
 .stat-card > span {
@@ -902,8 +921,12 @@
 .faq-item button i::after {
   content: '';
   position: absolute;
-  background: var(--turquoise);
+  background: var(--coral);
   transition: transform 0.3s var(--ease-out);
+}
+
+.faq-item button.is-open {
+  color: var(--coral);
 }
 
 .faq-item button i::before {
@@ -1111,9 +1134,13 @@
 .footer-ig {
   display: inline-block !important;
   margin-top: 16px;
-  color: white !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--coral-soft) !important;
+  border-bottom: 1px solid rgba(232, 70, 82, 0.45);
   padding-bottom: 2px;
+}
+
+.footer-ig:hover {
+  color: white !important;
 }
 
 .footer h4 {

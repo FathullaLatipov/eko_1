@@ -16,6 +16,7 @@ import { Stories } from './components/Stories'
 import { Statistics } from './components/Statistics'
 import { International } from './components/International'
 import { Testimonials } from './components/Testimonials'
+import { Reviews } from './components/Reviews'
 import { FAQ } from './components/FAQ'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
@@ -104,6 +105,7 @@ export default function App() {
             <Statistics />
             <International />
             <Testimonials />
+            <Reviews />
             <FAQ />
             <Contact />
           </main>
