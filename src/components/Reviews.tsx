@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Reveal } from './Reveal'
+import { useI18n } from '../i18n/LanguageContext'
+import type { Lang } from '../i18n/translations'
 import './Reviews.css'
 
 export type Review = {
@@ -9,35 +11,15 @@ export type Review = {
   rating: number
   text: string
   date: string
+  seed?: 1 | 2 | 3
 }
 
 const STORAGE_KEY = 'turkmed-reviews-v1'
 
 const seedReviews: Review[] = [
-  {
-    id: 'seed-1',
-    name: 'Нилуфар А.',
-    city: 'Ташкент',
-    rating: 5,
-    text: 'Очень тёплая команда и понятные объяснения на каждом этапе. Чувствовали заботу с первой консультации.',
-    date: '2026-03-12',
-  },
-  {
-    id: 'seed-2',
-    name: 'Азиз и Мадина',
-    city: 'Самарканд',
-    rating: 5,
-    text: 'Приехали из другого города — координатор всё организовала. Эмбриологи из Турции внушают настоящее доверие.',
-    date: '2026-02-28',
-  },
-  {
-    id: 'seed-3',
-    name: 'Дильноза К.',
-    city: 'Ташкент',
-    rating: 5,
-    text: 'Честные ответы без давления и внимательное отношение. Рекомендую TürkMed всем, кто ищет спокойный путь.',
-    date: '2026-01-19',
-  },
+  { id: 'seed-1', name: '', city: '', rating: 5, text: '', date: '2026-03-12', seed: 1 },
+  { id: 'seed-2', name: '', city: '', rating: 5, text: '', date: '2026-02-28', seed: 2 },
+  { id: 'seed-3', name: '', city: '', rating: 5, text: '', date: '2026-01-19', seed: 3 },
 ]
 
 function loadReviews(): Review[] {
@@ -47,7 +29,7 @@ function loadReviews(): Review[] {
     const parsed = JSON.parse(raw) as Review[]
     if (!Array.isArray(parsed)) return seedReviews
     const seedIds = new Set(seedReviews.map((r) => r.id))
-    const userOnes = parsed.filter((r) => r && r.id && !seedIds.has(r.id))
+    const userOnes = parsed.filter((r) => r && r.id && !seedIds.has(r.id) && !r.seed)
     return [...userOnes, ...seedReviews]
   } catch {
     return seedReviews
@@ -56,7 +38,7 @@ function loadReviews(): Review[] {
 
 function saveUserReviews(all: Review[]) {
   const seedIds = new Set(seedReviews.map((r) => r.id))
-  const userOnes = all.filter((r) => !seedIds.has(r.id))
+  const userOnes = all.filter((r) => !seedIds.has(r.id) && !r.seed)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(userOnes))
 }
 
@@ -64,10 +46,12 @@ function Stars({
   value,
   onChange,
   interactive = false,
+  labelOf,
 }: {
   value: number
   onChange?: (n: number) => void
   interactive?: boolean
+  labelOf: (n: number) => string
 }) {
   return (
     <div className={`review-stars${interactive ? ' is-interactive' : ''}`} role={interactive ? 'radiogroup' : undefined}>
@@ -76,7 +60,7 @@ function Stars({
           key={n}
           type="button"
           className={n <= value ? 'is-on' : ''}
-          aria-label={`${n} из 5`}
+          aria-label={labelOf(n)}
           disabled={!interactive}
           onClick={() => onChange?.(n)}
           data-cursor={interactive ? true : undefined}
@@ -88,9 +72,16 @@ function Stars({
   )
 }
 
-function formatDate(iso: string) {
+const localeMap: Record<Lang, string> = {
+  ru: 'ru-RU',
+  uz: 'uz-UZ',
+  tr: 'tr-TR',
+  en: 'en-US',
+}
+
+function formatDate(iso: string, lang: Lang) {
   try {
-    return new Date(iso).toLocaleDateString('ru-RU', {
+    return new Date(iso).toLocaleDateString(localeMap[lang], {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
@@ -101,6 +92,7 @@ function formatDate(iso: string) {
 }
 
 export function Reviews() {
+  const { t, lang } = useI18n()
   const [reviews, setReviews] = useState<Review[]>(seedReviews)
   const [name, setName] = useState('')
   const [city, setCity] = useState('')
@@ -113,34 +105,42 @@ export function Reviews() {
     setReviews(loadReviews())
   }, [])
 
+  const displayReviews = useMemo(
+    () =>
+      reviews.map((r) => {
+        if (!r.seed) return r
+        return {
+          ...r,
+          name: t(`reviews.seed${r.seed}.name`),
+          city: t(`reviews.seed${r.seed}.city`),
+          text: t(`reviews.seed${r.seed}.text`),
+        }
+      }),
+    [reviews, t],
+  )
+
   const average = useMemo(() => {
     if (!reviews.length) return 0
     const sum = reviews.reduce((acc, r) => acc + r.rating, 0)
     return Math.round((sum / reviews.length) * 10) / 10
   }, [reviews])
 
+  const starLabel = (n: number) => t('reviews.starsOf', { n: String(n) })
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     setError('')
     const trimmedName = name.trim()
     const trimmedText = text.trim()
-    if (trimmedName.length < 2) {
-      setError('Пожалуйста, укажите имя.')
-      return
-    }
-    if (trimmedText.length < 10) {
-      setError('Напишите чуть подробнее — хотя бы несколько слов.')
-      return
-    }
-    if (rating < 1) {
-      setError('Выберите оценку.')
+    if (trimmedName.length < 2 || trimmedText.length < 10 || rating < 1) {
+      setError(t('reviews.error'))
       return
     }
 
     const next: Review = {
       id: `user-${Date.now()}`,
       name: trimmedName,
-      city: city.trim() || 'Узбекистан',
+      city: city.trim() || '—',
       rating,
       text: trimmedText,
       date: new Date().toISOString().slice(0, 10),
@@ -161,60 +161,58 @@ export function Reviews() {
     <section className="section reviews" id="reviews">
       <div className="container">
         <Reveal>
-          <span className="section-label">Отзывы и комментарии</span>
-          <h2 className="section-title">Поделитесь своим опытом</h2>
-          <p className="section-lead">
-            Ваши слова помогают другим семьям сделать первый шаг с уверенностью.
-          </p>
+          <span className="section-label">{t('reviews.label')}</span>
+          <h2 className="section-title">{t('reviews.title')}</h2>
+          <p className="section-lead">{t('reviews.lead')}</p>
         </Reveal>
 
         <div className="reviews-layout">
-          <Reveal delay={0.08} className="reviews-form-wrap glass">
+          <Reveal delay={0.08} className="reviews-form-wrap glass-plaque">
             <div className="reviews-form-head">
-              <h3>Оставить отзыв</h3>
-              <p>Имя, оценка и короткий комментарий — этого достаточно.</p>
+              <h3>{t('reviews.formTitle')}</h3>
+              <p>{t('reviews.formHint')}</p>
             </div>
 
             {sent ? (
               <div className="reviews-success">
                 <div className="reviews-success-orb" aria-hidden />
-                <strong>Спасибо за отзыв!</strong>
-                <span>Ваш комментарий уже на странице.</span>
+                <strong>{t('reviews.thanks')}</strong>
+                <span>{t('reviews.thanksSub')}</span>
               </div>
             ) : (
               <form className="reviews-form" onSubmit={onSubmit}>
                 <label>
-                  Имя
+                  {t('reviews.name')}
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Как к вам обращаться?"
+                    placeholder={t('reviews.phName')}
                     required
                     maxLength={60}
                     data-cursor
                   />
                 </label>
                 <label>
-                  Город
+                  {t('reviews.city')}
                   <input
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="Ташкент"
+                    placeholder={t('reviews.phCity')}
                     maxLength={40}
                     data-cursor
                   />
                 </label>
                 <div className="reviews-rating-field">
-                  <span>Оценка</span>
-                  <Stars value={rating} onChange={setRating} interactive />
+                  <span>{t('reviews.rating')}</span>
+                  <Stars value={rating} onChange={setRating} interactive labelOf={starLabel} />
                 </div>
                 <label>
-                  Комментарий
+                  {t('reviews.comment')}
                   <textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     rows={4}
-                    placeholder="Расскажите, что вам понравилось…"
+                    placeholder={t('reviews.phText')}
                     required
                     maxLength={600}
                     data-cursor
@@ -222,28 +220,26 @@ export function Reviews() {
                 </label>
                 {error && <p className="reviews-error">{error}</p>}
                 <button type="submit" className="btn btn-coral" data-cursor>
-                  Отправить отзыв
+                  {t('reviews.submit')}
                 </button>
               </form>
             )}
           </Reveal>
 
           <div className="reviews-feed">
-            <Reveal delay={0.12} className="reviews-summary glass">
+            <Reveal delay={0.12} className="reviews-summary glass-plaque">
               <div>
                 <strong>{average.toFixed(1)}</strong>
-                <Stars value={Math.round(average)} />
+                <Stars value={Math.round(average)} labelOf={starLabel} />
               </div>
               <p>
-                {reviews.length}{' '}
-                {reviews.length === 1 ? 'отзыв' : reviews.length < 5 ? 'отзыва' : 'отзывов'}
-                {' '}на сайте
+                {reviews.length} {t('reviews.count')}
               </p>
             </Reveal>
 
             <div className="reviews-list">
-              {reviews.map((r, i) => (
-                <Reveal key={r.id} delay={Math.min(0.05 * i, 0.3)} className="review-card">
+              {displayReviews.map((r, i) => (
+                <Reveal key={r.id} delay={Math.min(0.05 * i, 0.3)} className="review-card glass-plaque">
                   <div className="review-card-top">
                     <div className="review-avatar" aria-hidden>
                       {r.name.trim().charAt(0).toUpperCase()}
@@ -251,10 +247,10 @@ export function Reviews() {
                     <div>
                       <strong>{r.name}</strong>
                       <span>
-                        {r.city} · {formatDate(r.date)}
+                        {r.city} · {formatDate(r.date, lang)}
                       </span>
                     </div>
-                    <Stars value={r.rating} />
+                    <Stars value={r.rating} labelOf={starLabel} />
                   </div>
                   <p>«{r.text}»</p>
                 </Reveal>

@@ -9,9 +9,9 @@
 }
 
 .nav.is-scrolled {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 rgba(232, 70, 82, 0.1);
 }
 
@@ -75,6 +75,104 @@
 .nav-links a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 5;
+  position: relative;
+}
+
+.lang-switch {
+  position: relative;
+  z-index: 10060;
+}
+
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  border: 1px solid rgba(232, 70, 82, 0.22);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(26, 42, 50, 0.06);
+}
+
+.lang-btn span {
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 170px;
+  padding: 8px;
+  border-radius: 16px;
+  list-style: none;
+  z-index: 10050;
+  background: rgba(255, 255, 255, 0.97) !important;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border: 1px solid rgba(232, 70, 82, 0.14);
+  box-shadow:
+    0 18px 50px rgba(26, 42, 50, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.lang-menu button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lang-menu button strong {
+  width: 28px;
+  color: var(--coral);
+  font-size: 0.8rem;
+}
+
+.lang-menu button:hover,
+.lang-menu button.is-active {
+  background: var(--coral-mist);
+  color: var(--ink);
+}
+
+.lang-mobile {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 4px;
+}
+
+.lang-mobile button {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--gray-200);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--gray-600);
+}
+
+.lang-mobile button.is-active {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: white;
 }
 
 .nav-cta {

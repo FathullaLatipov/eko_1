@@ -1,19 +1,12 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Reveal } from './Reveal'
+import { useI18n } from '../i18n/LanguageContext'
 
-const steps = [
-  { title: 'Консультация', desc: 'Внимательное знакомство и сбор анамнеза.' },
-  { title: 'Диагностика', desc: 'Точная диагностика фертильности без лишних слов.' },
-  { title: 'План лечения', desc: 'Персональный протокол под ваш организм.' },
-  { title: 'Пункция', desc: 'Бережная процедура под контролем экспертов.' },
-  { title: 'Лаборатория', desc: 'Эмбриология высшего уровня и постоянный мониторинг.' },
-  { title: 'Перенос', desc: 'Точный перенос эмбриона в оптимальное окно.' },
-  { title: 'Беременность', desc: 'Сопровождение и поддержка на каждом шаге.' },
-  { title: 'Малыш', desc: 'Начало новой главы вашей семьи.' },
-]
+const stepKeys = [1, 2, 3, 4, 5, 6, 7, 8] as const
 
 export function Timeline() {
+  const { t } = useI18n()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -25,11 +18,9 @@ export function Timeline() {
     <section className="section timeline" id="journey">
       <div className="container">
         <Reveal>
-          <span className="section-label">Путь лечения</span>
-          <h2 className="section-title">Ваш путь — шаг за шагом</h2>
-          <p className="section-lead">
-            От первого разговора до первого сердцебиения — в спокойном, заботливом ритме.
-          </p>
+          <span className="section-label">{t('journey.label')}</span>
+          <h2 className="section-title">{t('journey.title')}</h2>
+          <p className="section-lead">{t('journey.lead')}</p>
         </Reveal>
       </div>
 
@@ -38,13 +29,13 @@ export function Timeline() {
           <motion.div className="timeline-progress-bar" style={{ scaleX }} />
         </div>
         <div className="timeline-row">
-          {steps.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.05} className="timeline-step">
+          {stepKeys.map((n, i) => (
+            <Reveal key={n} delay={i * 0.05} className="timeline-step">
               <div className="timeline-node">
                 <span />
               </div>
-              <strong>{s.title}</strong>
-              <p>{s.desc}</p>
+              <strong>{t(`journey.${n}.t`)}</strong>
+              <p>{t(`journey.${n}.d`)}</p>
             </Reveal>
           ))}
         </div>

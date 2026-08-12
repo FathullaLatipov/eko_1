@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import Lenis from 'lenis'
 import { Loader } from './components/Loader'
-import { CustomCursor } from './components/CustomCursor'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
@@ -20,6 +19,7 @@ import { Reviews } from './components/Reviews'
 import { FAQ } from './components/FAQ'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { BookingModal } from './components/BookingModal'
 import './components/sections.css'
 
 export default function App() {
@@ -33,10 +33,12 @@ export default function App() {
     }
     document.body.style.overflow = ''
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: reduceMotion ? 0.6 : 0.95,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
+      smoothWheel: !reduceMotion,
+      touchMultiplier: 1.4,
     })
 
     let raf = 0
@@ -57,27 +59,10 @@ export default function App() {
       lenis.scrollTo(el as HTMLElement, { offset: -40 })
     }
 
-    const onMagneticMove = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement).closest('.magnetic') as HTMLElement | null
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-      const x = e.clientX - rect.left - rect.width / 2
-      const y = e.clientY - rect.top - rect.height / 2
-      el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`
-    }
-    const onMagneticLeave = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement).closest('.magnetic') as HTMLElement | null
-      if (el) el.style.transform = 'translate(0, 0)'
-    }
-
     document.addEventListener('click', onAnchorClick)
-    document.addEventListener('mousemove', onMagneticMove)
-    document.addEventListener('mouseleave', onMagneticLeave, true)
     return () => {
       cancelAnimationFrame(raf)
       document.removeEventListener('click', onAnchorClick)
-      document.removeEventListener('mousemove', onMagneticMove)
-      document.removeEventListener('mouseleave', onMagneticLeave, true)
       lenis.destroy()
     }
   }, [loading])
@@ -90,7 +75,6 @@ export default function App() {
 
       {!loading && (
         <>
-          <CustomCursor />
           <Navbar />
           <main>
             <Hero />
@@ -110,6 +94,7 @@ export default function App() {
             <Contact />
           </main>
           <Footer />
+          <BookingModal />
         </>
       )}
     </>

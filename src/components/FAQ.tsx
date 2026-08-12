@@ -2,56 +2,46 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Reveal } from './Reveal'
 import { clinic } from '../data/clinic'
+import { useI18n } from '../i18n/LanguageContext'
 
-const faqs = [
-  {
-    q: 'Как записаться на консультацию?',
-    a: `Позвоните по номеру ${clinic.phone}, напишите в Instagram ${clinic.instagramHandle} или оставьте заявку в форме. Координатор ЭКО подскажет следующие шаги.`,
-  },
-  {
-    q: 'Кто ваши эмбриологи?',
-    a: 'В TürkMed работают высококвалифицированные эмбриологи из Турции с опытом более 17 лет — в том числе Osman Çingöz, Mesut Çeter и Gürkan Yurtdaş — а также наши отечественные врачи из Узбекистана.',
-  },
-  {
-    q: 'Где находится клиника?',
-    a: `${clinic.address}, ${clinic.district}. Ориентир: ${clinic.landmark}. Часы работы: ${clinic.hoursWeek}; ${clinic.hoursSat}.`,
-  },
-  {
-    q: 'На каких языках можно общаться?',
-    a: 'Мы обычно общаемся на узбекском, русском и турецком. Если нужен дополнительный язык — спросите координатора.',
-  },
-  {
-    q: 'Насколько персонален план ЭКО?',
-    a: 'Каждый протокол составляется индивидуально по результатам диагностики. Репродуктолог объясняет варианты ясно — без шаблонов.',
-  },
-]
+const faqKeys = [1, 2, 3, 4, 5] as const
 
 export function FAQ() {
+  const { t } = useI18n()
   const [open, setOpen] = useState<number | null>(0)
+
+  const clinicVars = {
+    phone: clinic.phone,
+    ig: clinic.instagramHandle,
+    address: t('clinic.address'),
+    district: t('clinic.district'),
+    landmark: t('clinic.landmark'),
+    hoursWeek: t('clinic.hoursWeek'),
+    hoursSat: t('clinic.hoursSat'),
+  }
 
   return (
     <section className="section faq" id="faq">
       <div className="container faq-grid">
         <Reveal>
-          <span className="section-label">Вопросы</span>
-          <h2 className="section-title">Ответы — спокойно и честно</h2>
-          <p className="section-lead">
-            Остались вопросы? Напишите {clinic.instagramHandle} — мы ответим с заботой.
-          </p>
+          <span className="section-label">{t('faq.label')}</span>
+          <h2 className="section-title">{t('faq.title')}</h2>
+          <p className="section-lead">{t('faq.lead', { ig: clinic.instagramHandle })}</p>
         </Reveal>
 
         <div className="faq-list">
-          {faqs.map((f, i) => {
+          {faqKeys.map((n, i) => {
             const isOpen = open === i
+            const q = t(`faq.${n}.q`)
             return (
-              <Reveal key={f.q} delay={i * 0.05} className="faq-item">
+              <Reveal key={n} delay={i * 0.05} className="faq-item">
                 <button
                   className={isOpen ? 'is-open' : ''}
                   onClick={() => setOpen(isOpen ? null : i)}
                   data-cursor
                   aria-expanded={isOpen}
                 >
-                  <span>{f.q}</span>
+                  <span>{q}</span>
                   <i aria-hidden />
                 </button>
                 <AnimatePresence initial={false}>
@@ -63,7 +53,7 @@ export function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <p>{f.a}</p>
+                      <p>{t(`faq.${n}.a`, clinicVars)}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

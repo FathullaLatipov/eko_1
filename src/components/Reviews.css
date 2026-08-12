@@ -96,7 +96,7 @@
 }
 
 .review-stars.is-interactive button {
-  cursor: none;
+  cursor: pointer;
 }
 
 .review-stars.is-interactive button:hover,
@@ -193,17 +193,18 @@
 }
 
 .review-card {
-  background: white;
-  border-radius: var(--radius-md);
+  border-radius: 24px;
   padding: 22px 24px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid transparent;
-  transition: border-color 0.35s ease, transform 0.35s var(--ease-out);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
 .review-card:hover {
-  border-color: rgba(232, 70, 82, 0.18);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow:
+    0 16px 40px rgba(16, 168, 201, 0.12),
+    0 6px 18px rgba(26, 42, 50, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .review-card-top {

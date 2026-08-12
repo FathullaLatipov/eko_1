@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 import { Reveal } from './Reveal'
+import { useI18n } from '../i18n/LanguageContext'
 
 function Counter({
   value,
@@ -42,36 +43,37 @@ function Counter({
 }
 
 const stats = [
-  { value: 17, suffix: '+', label: 'лет опыта в эмбриологии', decimals: 0 },
-  { value: 7, suffix: '', label: 'специалистов в команде', decimals: 0 },
-  { value: 3, suffix: '', label: 'турецких эмбриолога-эксперта', decimals: 0 },
-  { value: 4.7, suffix: '', label: 'рейтинг пациентов (Med24)', decimals: 1 },
+  { value: 17, suffix: '+', labelKey: 'stats.1', decimals: 0 },
+  { value: 7, suffix: '', labelKey: 'stats.2', decimals: 0 },
+  { value: 3, suffix: '', labelKey: 'stats.3', decimals: 0 },
+  { value: 4.7, suffix: '', labelKey: 'stats.4', decimals: 1 },
 ]
 
 export function Statistics() {
+  const { t } = useI18n()
+
   return (
     <section className="section statistics">
       <div className="container">
         <Reveal>
-          <span className="section-label">Цифры успеха</span>
-          <h2 className="section-title">Числа, за которыми — новые начала</h2>
+          <span className="section-label">{t('stats.label')}</span>
+          <h2 className="section-title">{t('stats.title')}</h2>
         </Reveal>
 
         <div className="stats-grid">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08} className="stat-card">
-              <Counter value={s.value} suffix={s.suffix} decimals={s.decimals} />
-              <span>{s.label}</span>
-              <div className="stat-bar" aria-hidden>
-                <i style={{ animationDelay: `${i * 0.15}s` }} />
-              </div>
-            </Reveal>
+            <div key={s.labelKey} className="stat-card glass-plaque">
+              <Reveal delay={i * 0.08}>
+                <Counter value={s.value} suffix={s.suffix} decimals={s.decimals} />
+                <span>{t(s.labelKey)}</span>
+                <div className="stat-bar" aria-hidden>
+                  <i style={{ animationDelay: `${i * 0.15}s` }} />
+                </div>
+              </Reveal>
+            </div>
           ))}
         </div>
-        <p className="stats-note">
-          Результаты индивидуальны и зависят от диагноза и протокола. Ваш специалист
-          TürkMed обсудит персональный прогноз на консультации.
-        </p>
+        <p className="stats-note">{t('stats.note')}</p>
       </div>
     </section>
   )

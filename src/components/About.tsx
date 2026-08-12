@@ -1,39 +1,38 @@
 import { Reveal } from './Reveal'
 import { clinic } from '../data/clinic'
+import { useI18n } from '../i18n/LanguageContext'
 import './sections.css'
 
 export function About() {
+  const { t } = useI18n()
+
   return (
     <section className="section about" id="about">
       <div className="container about-grid">
         <Reveal>
-          <span className="section-label">О клинике</span>
+          <span className="section-label">{t('about.label')}</span>
           <h2 className="section-title">
-            Где турецкий опыт
+            {t('about.title1')}
             <br />
-            и забота врачей Узбекистана
+            {t('about.title2')}
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
           <p className="section-lead about-lead">
-            {clinic.fullName} — частная клиника в Ташкенте, специализирующаяся на
-            репродуктивной медицине, женском и мужском здоровье и ЭКО. В нашей
-            команде работают высококвалифицированные эмбриологи из Турции с опытом
-            более 17 лет и наши отечественные врачи из Узбекистана — современные
-            протоколы и тёплый, персональный подход к каждому пациенту.
+            {t('about.lead', { name: clinic.fullName })}
           </p>
           <div className="about-stats">
             <div>
               <strong>17+</strong>
-              <span>лет опыта в эмбриологии</span>
+              <span>{t('about.s1')}</span>
             </div>
             <div>
               <strong>7</strong>
-              <span>специалистов рядом с вами</span>
+              <span>{t('about.s2')}</span>
             </div>
             <div className="about-stat-accent">
               <strong>TR × UZ</strong>
-              <span>турецкие эксперты и врачи Узбекистана</span>
+              <span>{t('about.s3')}</span>
             </div>
           </div>
         </Reveal>
@@ -43,16 +42,16 @@ export function About() {
         <Reveal className="about-img about-img-lg" delay={0.1} blur>
           <img
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1000&q=80"
-            alt="Современная лаборатория репродукции"
+            alt=""
           />
         </Reveal>
         <Reveal className="about-img about-img-sm" delay={0.25} blur>
           <img
             src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1000&q=80"
-            alt="Научная лаборатория и микроскопия"
+            alt=""
           />
           <div className="about-caption glass">
-            Наука, которая бережно создаёт новую жизнь
+            {t('about.cap')}
           </div>
         </Reveal>
       </div>

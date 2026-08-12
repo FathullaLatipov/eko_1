@@ -1,41 +1,34 @@
 import { Reveal } from './Reveal'
+import { useI18n } from '../i18n/LanguageContext'
 
-const services = [
-  'Помощь с поездкой',
-  'Ориентация по городу',
-  'Поддержка UZ / TR / RU',
-  'Трансфер из аэропорта',
-  'Помощь с проживанием',
-  'Координация лечения',
-]
+const serviceKeys = ['intl.1', 'intl.2', 'intl.3', 'intl.4', 'intl.5', 'intl.6'] as const
 
 const countries = [
-  { name: 'Узбекистан', x: '64%', y: '42%' },
-  { name: 'Турция', x: '54%', y: '40%' },
-  { name: 'Казахстан', x: '62%', y: '34%' },
-  { name: 'Россия', x: '58%', y: '28%' },
-  { name: 'Таджикистан', x: '66%', y: '46%' },
-  { name: 'Кыргызстан', x: '68%', y: '38%' },
-  { name: 'ОАЭ', x: '58%', y: '52%' },
-  { name: 'Корея', x: '80%', y: '42%' },
+  { key: 'intl.c.uz', x: '64%', y: '42%' },
+  { key: 'intl.c.tr', x: '54%', y: '40%' },
+  { key: 'intl.c.kz', x: '62%', y: '34%' },
+  { key: 'intl.c.ru', x: '58%', y: '28%' },
+  { key: 'intl.c.tj', x: '66%', y: '46%' },
+  { key: 'intl.c.kg', x: '68%', y: '38%' },
+  { key: 'intl.c.ae', x: '58%', y: '52%' },
+  { key: 'intl.c.kr', x: '80%', y: '42%' },
 ]
 
 export function International() {
+  const { t } = useI18n()
+
   return (
     <section className="section international" id="international">
       <div className="container international-grid">
         <Reveal>
-          <span className="section-label">Пациенты из разных городов</span>
-          <h2 className="section-title">Забота Ташкента — тепло региона</h2>
-          <p className="section-lead">
-            Живёте в Ташкенте или приезжаете из другого города — мы поможем приехать
-            спокойно, подготовленными и не в одиночестве.
-          </p>
+          <span className="section-label">{t('intl.label')}</span>
+          <h2 className="section-title">{t('intl.title')}</h2>
+          <p className="section-lead">{t('intl.lead')}</p>
           <ul className="intl-services">
-            {services.map((s) => (
-              <li key={s}>
+            {serviceKeys.map((key) => (
+              <li key={key}>
                 <span className="intl-check" aria-hidden />
-                {s}
+                {t(key)}
               </li>
             ))}
           </ul>
@@ -54,12 +47,12 @@ export function International() {
           </svg>
           {countries.map((c, i) => (
             <div
-              key={c.name}
+              key={c.key}
               className="map-pin"
               style={{ left: c.x, top: c.y, animationDelay: `${i * 0.2}s` }}
             >
               <i />
-              <span>{c.name}</span>
+              <span>{t(c.key)}</span>
             </div>
           ))}
         </Reveal>

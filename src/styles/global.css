@@ -61,16 +61,12 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   color: var(--ink);
-  background: var(--white);
+  background:
+    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(16, 168, 201, 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 100% 20%, rgba(232, 70, 82, 0.04), transparent 45%),
+    var(--white);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none;
-}
-
-@media (pointer: coarse) {
-  body {
-    cursor: auto;
-  }
 }
 
 a {
@@ -82,13 +78,7 @@ button {
   font-family: inherit;
   border: none;
   background: none;
-  cursor: none;
-}
-
-@media (pointer: coarse) {
-  button {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 img {
@@ -268,50 +258,38 @@ ul {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: var(--shadow-soft);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 12px 36px rgba(16, 168, 201, 0.09),
+    0 4px 16px rgba(26, 42, 50, 0.06);
 }
 
-/* Custom cursor */
-.cursor-dot,
-.cursor-ring {
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  z-index: 10000;
-  mix-blend-mode: difference;
+.glass-plaque {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 14px 40px rgba(16, 168, 201, 0.1),
+    0 6px 20px rgba(26, 42, 50, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: white;
-  transform: translate(-50%, -50%);
+/* Heavy blur only where it matters — keeps scroll smooth */
+.hero .glass-plaque,
+.nav.is-scrolled,
+.lang-menu.glass-plaque {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
 }
 
-.cursor-ring {
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  transform: translate(-50%, -50%);
-  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out), background 0.25s ease;
-}
-
-.cursor-ring.is-hover {
-  width: 64px;
-  height: 64px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-@media (pointer: coarse) {
-  .cursor-dot,
-  .cursor-ring {
-    display: none;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

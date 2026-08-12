@@ -1,8 +1,10 @@
 import { useState, type FormEvent } from 'react'
 import { Reveal } from './Reveal'
 import { clinic } from '../data/clinic'
+import { useI18n } from '../i18n/LanguageContext'
 
 export function Contact() {
+  const { t } = useI18n()
   const [sent, setSent] = useState(false)
 
   const onSubmit = (e: FormEvent) => {
@@ -14,15 +16,12 @@ export function Contact() {
     <section className="section contact" id="contact">
       <div className="container contact-grid">
         <Reveal>
-          <span className="section-label">Контакты</span>
-          <h2 className="section-title">Начните путь к чуду</h2>
-          <p className="section-lead">
-            Оставьте несколько деталей — координатор ЭКО ответит тепло и ясно. Или
-            напишите нам в Instagram.
-          </p>
+          <span className="section-label">{t('contact.label')}</span>
+          <h2 className="section-title">{t('contact.title')}</h2>
+          <p className="section-lead">{t('contact.lead')}</p>
           <div className="contact-details">
             <p>
-              <span>Телефон</span>
+              <span>{t('contact.phone')}</span>
               <a href={clinic.phoneHref}>{clinic.phone}</a>
             </p>
             <p>
@@ -32,57 +31,55 @@ export function Contact() {
               </a>
             </p>
             <p>
-              <span>Адрес</span>
+              <span>{t('contact.clinic')}</span>
               <strong>
-                {clinic.address}
+                {t('clinic.address')}
                 <br />
-                {clinic.district}
+                {t('clinic.district')}
               </strong>
             </p>
             <p>
-              <span>Ориентир</span>
-              <strong>{clinic.landmark}</strong>
+              <span>{t('contact.landmark')}</span>
+              <strong>{t('clinic.landmark')}</strong>
             </p>
             <p>
-              <span>Часы работы</span>
+              <span>{t('contact.hours')}</span>
               <strong>
-                {clinic.hoursWeek}
+                {t('clinic.hoursWeek')}
                 <br />
-                {clinic.hoursSat}
+                {t('clinic.hoursSat')}
               </strong>
             </p>
           </div>
         </Reveal>
 
-        <Reveal delay={0.12} className="contact-form-wrap glass">
+        <Reveal delay={0.12} className="contact-form-wrap glass-plaque">
           {sent ? (
             <div className="contact-success">
               <img src={clinic.logoMark} alt="" className="contact-success-logo" />
-              <h3>Спасибо</h3>
-              <p>
-                Мы получили вашу заявку. Координатор {clinic.name} скоро свяжется с вами.
-              </p>
+              <h3>{t('contact.thanks')}</h3>
+              <p>{t('contact.thanksSub')}</p>
             </div>
           ) : (
             <form className="contact-form" onSubmit={onSubmit}>
               <label>
-                ФИО
-                <input name="name" required placeholder="Ваше имя" data-cursor />
+                {t('contact.name')}
+                <input name="name" required placeholder={t('reviews.phName')} data-cursor />
               </label>
               <label>
-                Телефон
+                {t('contact.phone')}
                 <input name="phone" type="tel" required placeholder="+998 __ ___ __ __" data-cursor />
               </label>
               <label>
-                Город
-                <input name="city" placeholder="Ташкент" data-cursor />
+                {t('contact.city')}
+                <input name="city" placeholder={t('reviews.phCity')} data-cursor />
               </label>
               <label>
-                Чем можем помочь?
-                <textarea name="message" rows={4} placeholder="Расскажите о вашем пути…" data-cursor />
+                {t('contact.msg')}
+                <textarea name="message" rows={4} placeholder={t('reviews.phText')} data-cursor />
               </label>
               <button type="submit" className="btn btn-coral" data-cursor>
-                Отправить заявку
+                {t('contact.submit')}
               </button>
               <a
                 className="contact-ig"
@@ -91,7 +88,7 @@ export function Contact() {
                 rel="noreferrer"
                 data-cursor
               >
-                Или напишите в Instagram →
+                {t('contact.ig')}
               </a>
             </form>
           )}

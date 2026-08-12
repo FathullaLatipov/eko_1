@@ -1,26 +1,11 @@
 import { Reveal } from './Reveal'
+import { useI18n } from '../i18n/LanguageContext'
 
 const tech = [
-  {
-    title: 'Инкубация эмбрионов',
-    text: 'Непрерывная культуральная среда, близкая к условиям организма.',
-    visual: 'incubator',
-  },
-  {
-    title: 'Точная микроскопия',
-    text: 'Высокое разрешение для микроманипуляций с ювелирной аккуратностью.',
-    visual: 'scope',
-  },
-  {
-    title: 'Отбор эмбрионов',
-    text: 'Современные системы оценки — всегда под контролем эксперта.',
-    visual: 'ai',
-  },
-  {
-    title: 'Безопасность лаборатории',
-    text: 'Качество воздуха, идентификация и двойная проверка на каждом шаге.',
-    visual: 'safe',
-  },
+  { titleKey: 'tech.1.t', textKey: 'tech.1.d', visual: 'incubator' },
+  { titleKey: 'tech.2.t', textKey: 'tech.2.d', visual: 'scope' },
+  { titleKey: 'tech.3.t', textKey: 'tech.3.d', visual: 'ai' },
+  { titleKey: 'tech.4.t', textKey: 'tech.4.d', visual: 'safe' },
 ]
 
 function TechVisual({ type }: { type: string }) {
@@ -68,24 +53,26 @@ function TechVisual({ type }: { type: string }) {
 }
 
 export function Technology() {
+  const { t } = useI18n()
+
   return (
     <section className="section technology" id="technology">
       <div className="container">
         <Reveal>
-          <span className="section-label">Лабораторные технологии</span>
-          <h2 className="section-title">Будущее медицины — человеческое тепло</h2>
-          <p className="section-lead">
-            Инструменты, которые остаются незаметными — чтобы наука могла тихо делать своё дело.
-          </p>
+          <span className="section-label">{t('tech.label')}</span>
+          <h2 className="section-title">{t('tech.title')}</h2>
+          <p className="section-lead">{t('tech.lead')}</p>
         </Reveal>
 
         <div className="tech-grid">
-          {tech.map((t, i) => (
-            <Reveal key={t.title} delay={i * 0.08} className="tech-card">
-              <TechVisual type={t.visual} />
-              <h3>{t.title}</h3>
-              <p>{t.text}</p>
-            </Reveal>
+          {tech.map((item, i) => (
+            <div key={item.titleKey} className="tech-card glass-plaque">
+              <Reveal delay={i * 0.08}>
+                <TechVisual type={item.visual} />
+                <h3>{t(item.titleKey)}</h3>
+                <p>{t(item.textKey)}</p>
+              </Reveal>
+            </div>
           ))}
         </div>
       </div>
