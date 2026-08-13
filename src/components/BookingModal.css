@@ -169,3 +169,27 @@
   font-weight: 300;
   margin-bottom: 12px;
 }
+
+@media (max-width: 560px) {
+  .booking-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .booking-modal {
+    width: 100%;
+    max-height: min(92vh, 100%);
+    border-radius: 24px 24px 16px 16px;
+    padding: 22px 16px 20px;
+  }
+
+  .booking-doctor {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .booking-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

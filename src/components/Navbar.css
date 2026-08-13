@@ -221,12 +221,15 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 100px 24px 40px;
-  background: rgba(255, 255, 255, 0.96);
+  max-height: 100dvh;
+  overflow-y: auto;
+  padding: calc(var(--nav-h) + 24px) 24px calc(40px + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(20px);
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   box-shadow: var(--shadow-lift);
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-mobile a:not(.btn) {
@@ -244,5 +247,51 @@
   .nav-burger,
   .nav-mobile {
     display: flex;
+  }
+
+  .nav-logo-img {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .lang-btn {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav-inner {
+    gap: 12px;
+  }
+
+  .nav-logo-img {
+    height: 32px;
+    max-width: min(160px, 46vw);
+    object-fit: contain;
+  }
+
+  .nav-mobile {
+    padding: 20px 20px 32px;
+    gap: 8px;
+  }
+
+  .nav-mobile a:not(.btn) {
+    font-size: clamp(1.45rem, 7vw, 1.85rem);
+    padding: 10px 0;
+  }
+
+  .nav-mobile .btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  .lang-mobile {
+    margin: 12px 0 4px;
   }
 }

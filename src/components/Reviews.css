@@ -258,13 +258,49 @@
 @media (max-width: 900px) {
   .reviews-layout {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .reviews-form-wrap {
     position: static;
+    padding: 24px 20px;
+    border-radius: 22px;
   }
 
   .reviews-list {
     max-height: none;
+  }
+
+  .reviews-form-head h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .reviews-form-wrap {
+    padding: 20px 16px;
+  }
+
+  .review-card {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .review-card > p {
+    font-size: 1.05rem;
+  }
+
+  .review-card-top {
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+
+  .review-card-top .review-stars {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .reviews-summary {
+    padding: 18px 16px;
   }
 }

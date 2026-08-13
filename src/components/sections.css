@@ -1239,7 +1239,7 @@
   color: rgba(255, 255, 255, 0.45);
 }
 
-/* Responsive */
+/* Responsive — tablet + phone */
 @media (max-width: 1100px) {
   .why-grid,
   .tech-grid,
@@ -1252,9 +1252,29 @@
   .testimonials-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .process-grid {
+    gap: 40px;
+  }
+
+  .timeline-row {
+    grid-template-columns: repeat(8, minmax(150px, 1fr));
+  }
 }
 
 @media (max-width: 900px) {
+  .section {
+    padding: 88px 0;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .section-lead {
+    font-size: 1rem;
+  }
+
   .about-grid,
   .about-gallery,
   .process-grid,
@@ -1270,6 +1290,12 @@
     position: static;
   }
 
+  .about-grid {
+    gap: 36px;
+    margin-bottom: 40px;
+    align-items: start;
+  }
+
   .about-img-lg,
   .about-img-sm {
     height: 220px;
@@ -1279,18 +1305,110 @@
   .embryology-media {
     height: 260px;
     max-width: none;
+    order: -1;
   }
 
-  .reviews-strip {
+  .embryology-shell {
+    gap: 28px;
+  }
+
+  .reviews-strip-inner {
     grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
   }
 
   .intl-services {
     grid-template-columns: 1fr;
   }
+
+  .world-map {
+    min-height: 280px;
+    margin-top: 8px;
+  }
+
+  .process-item {
+    padding: 22px 20px;
+  }
+
+  .process-item-inner {
+    grid-template-columns: 52px 1fr;
+    gap: 14px;
+  }
+
+  .process-item-inner > span {
+    font-size: 1.55rem;
+  }
+
+  .process-item-inner h3 {
+    font-size: 1.25rem;
+  }
+
+  .doctor-card:hover {
+    transform: none;
+  }
+
+  .doctor-body {
+    padding: 18px 16px 20px;
+  }
+
+  .footer-grid {
+    gap: 36px;
+  }
+
+  .footer-brand p {
+    max-width: none;
+  }
+
+  .contact-details p {
+    word-break: break-word;
+  }
+
+  .faq-item button {
+    font-size: 1rem;
+    padding: 18px 0;
+    gap: 12px;
+  }
+
+  .timeline-track-wrap {
+    margin-top: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .timeline-progress {
+    left: 40px;
+    right: 40px;
+  }
+
+  .timeline-row {
+    gap: 12px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
 }
 
 @media (max-width: 680px) {
+  .section {
+    padding: 72px 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+    margin-bottom: 14px;
+  }
+
+  .section-title::after {
+    width: 40px;
+    margin-top: 14px;
+  }
+
+  .section-lead {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
   .why-grid,
   .tech-grid,
   .stats-grid,
@@ -1299,13 +1417,172 @@
   .testimonials-grid,
   .about-stats {
     grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .why-card,
+  .tech-card,
+  .stat-card {
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .why-card h3,
+  .tech-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .stat-card strong {
+    font-size: clamp(2.2rem, 10vw, 2.8rem);
+  }
+
+  .about-stats {
+    gap: 16px;
+  }
+
+  .about-stats strong {
+    font-size: 2rem;
+  }
+
+  .about-gallery {
+    gap: 12px;
+  }
+
+  .about-img-lg,
+  .about-img-sm {
+    height: 180px;
   }
 
   .timeline-row {
-    grid-template-columns: repeat(8, 200px);
+    grid-template-columns: repeat(8, minmax(148px, 72vw));
+    gap: 10px;
+  }
+
+  .timeline-step strong {
+    font-size: 1.1rem;
+  }
+
+  .timeline-step p {
+    font-size: 0.82rem;
+  }
+
+  .timeline-progress {
+    left: 28px;
+    right: 28px;
+  }
+
+  .process-item-inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .process-item-inner > span {
+    font-size: 1.35rem;
+  }
+
+  .story-card,
+  .video-card {
+    border-radius: 22px;
+  }
+
+  .story-img,
+  .video-thumb {
+    height: 200px;
+  }
+
+  .story-card blockquote {
+    font-size: 1.1rem;
+    padding: 18px 18px 10px;
+  }
+
+  .video-card {
+    padding: 10px 10px 16px;
+  }
+
+  .video-meta {
+    padding: 0 6px;
+  }
+
+  .reviews-strip {
+    padding: 22px 20px;
+    border-radius: 22px;
+  }
+
+  .reviews-strip strong {
+    font-size: 1.45rem;
+  }
+
+  .embryology-media {
+    height: 220px;
+  }
+
+  .embryology-list li {
+    font-size: 0.95rem;
+  }
+
+  .world-map {
+    min-height: 240px;
+    border-radius: 22px;
+  }
+
+  .map-pin span {
+    font-size: 0.65rem;
+    padding: 2px 6px;
   }
 
   .contact-form-wrap {
-    padding: 24px;
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+
+  .footer-grid {
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .doctor-photo {
+    aspect-ratio: 4 / 5;
+    max-height: 320px;
+  }
+
+  .doctor-body h3 {
+    font-size: 1.25rem;
+  }
+
+  .doctor-body ul {
+    font-size: 0.88rem;
+  }
+
+  .faq-item button span {
+    text-align: left;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .why-num {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+  }
+
+  .play-btn {
+    width: 52px;
+    height: 52px;
   }
 }

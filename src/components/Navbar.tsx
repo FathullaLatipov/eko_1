@@ -37,6 +37,21 @@ export function Navbar() {
     }
   }, [langOpen])
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 980) setOpen(false)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
   return (
     <motion.header
       className={`nav${scrolled ? ' is-scrolled' : ''}`}
