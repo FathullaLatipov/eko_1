@@ -24,7 +24,6 @@ export function Doctors() {
                   src={d.img}
                   alt={d.name}
                   loading="lazy"
-                  style={{ objectPosition: d.position }}
                 />
               </div>
               <div className="doctor-body">

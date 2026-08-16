@@ -54,7 +54,7 @@ export function Navbar() {
 
   return (
     <motion.header
-      className={`nav${scrolled ? ' is-scrolled' : ''}`}
+      className={`nav${scrolled ? ' is-scrolled' : ''}${open ? ' is-menu-open' : ''}`}
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}

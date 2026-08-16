@@ -13,6 +13,7 @@ export function Timeline() {
     offset: ['start 70%', 'end 60%'],
   })
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   return (
     <section className="section timeline" id="journey">
@@ -28,14 +29,19 @@ export function Timeline() {
         <div className="timeline-progress" aria-hidden>
           <motion.div className="timeline-progress-bar" style={{ scaleX }} />
         </div>
+        <div className="timeline-progress-vert" aria-hidden>
+          <motion.div className="timeline-progress-bar" style={{ scaleY }} />
+        </div>
         <div className="timeline-row">
           {stepKeys.map((n, i) => (
             <Reveal key={n} delay={i * 0.05} className="timeline-step">
               <div className="timeline-node">
-                <span />
+                <span>{String(n).padStart(2, '0')}</span>
               </div>
-              <strong>{t(`journey.${n}.t`)}</strong>
-              <p>{t(`journey.${n}.d`)}</p>
+              <div className="timeline-copy">
+                <strong>{t(`journey.${n}.t`)}</strong>
+                <p>{t(`journey.${n}.d`)}</p>
+              </div>
             </Reveal>
           ))}
         </div>
